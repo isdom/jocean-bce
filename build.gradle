@@ -18,25 +18,11 @@ configurations {
 dependencies {
     compile 'org.jocean:jocean-idiom:0.1.4-SNAPSHOT'
     compile 'org.jocean:jocean-http:0.0.2-SNAPSHOT'
-    compile 'org.jocean:jocean-svr:0.0.1-SNAPSHOT'
-    compile('org.jocean:jocean-j2se:0.0.4-SNAPSHOT') { transitive = false }
+    // compile 'org.jocean:jocean-svr:0.0.1-SNAPSHOT'
+    // compile('org.jocean:jocean-j2se:0.0.4-SNAPSHOT') { transitive = false }
     
     compile 'javax.inject:javax.inject:1'
     compile 'com.google.guava:guava:20.0'
-    
-    compile 'com.aliyun:aliyun-java-sdk-core:4.3.3'
-    
-    /*aliyun ivision*/
-    compile 'com.aliyun:aliyun-java-sdk-ivision:1.0.1'
-    
-    /*aliyun ons*/
-    compile 'com.aliyun.openservices:ons-client:1.7.8.Final'
-    
-    /* for aliyun-sdk-oss */
-    compile 'com.aliyun.oss:aliyun-sdk-oss:3.3.0'
-    
-    /*aliyun mns*/
-    compile 'com.aliyun.mns:aliyun-sdk-mns:1.1.8.6'
     
     compile "org.springframework:spring-context-support:${springVersion}"
     
