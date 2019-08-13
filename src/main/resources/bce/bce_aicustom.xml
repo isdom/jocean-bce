@@ -4,7 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
     
-    <bean id="app_oauth" class="org.jocean.bce.oauth.internal.DefaultOAuthAPI"/>
-    <alias name="app_oauth" alias="${appname}"/>
+    <bean class="org.jocean.bce.ai.internal.DefaultAICustomAPI"/>
     
 </beans>
