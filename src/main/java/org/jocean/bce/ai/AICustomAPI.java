@@ -58,10 +58,10 @@ public interface AICustomAPI {
 
     public interface ObjectDetectionResponse {
         @JSONField(name = "log_id")
-        public int getLogId();
+        public long getLogId();
 
         @JSONField(name = "log_id")
-        public void setLogId(final int logid);
+        public void setLogId(final long logid);
 
         @JSONField(name = "results")
         public DetectionResult[] getResults();
