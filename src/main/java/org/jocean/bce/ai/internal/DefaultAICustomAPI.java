@@ -34,7 +34,7 @@ public class DefaultAICustomAPI implements AICustomAPI {
     */
 
     @Override
-    public Transformer<RpcRunner, ObjectDetectionResponse> detectObject(
+    public Transformer<RpcRunner, DetectObjectResponse> detectObject(
             final String appname, final String apipath, final String imageAsBase64) {
         final ImageData data = new ImageData();
 
@@ -48,7 +48,7 @@ public class DefaultAICustomAPI implements AICustomAPI {
                                 .path("/rpc/2.0/ai_custom/v1/detection/" + apipath)
                                 .paramAsQuery("access_token", oauthresp.getAccessToken())
                                 .body(data, ContentUtil.TOJSON)
-                                .responseAs(ContentUtil.ASJSON, ObjectDetectionResponse.class))));
+                                .responseAs(ContentUtil.ASJSON, DetectObjectResponse.class))));
     }
 
     @Inject

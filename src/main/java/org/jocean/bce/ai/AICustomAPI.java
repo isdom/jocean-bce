@@ -56,7 +56,7 @@ public interface AICustomAPI {
         public void setLocation(final ObjectLocation location);
     }
 
-    public interface ObjectDetectionResponse {
+    public interface DetectObjectResponse {
         @JSONField(name = "log_id")
         public long getLogId();
 
@@ -70,6 +70,6 @@ public interface AICustomAPI {
         public void setResults(final DetectionResult[] results);
     }
 
-    public Transformer<RpcRunner, ObjectDetectionResponse> detectObject(
+    public Transformer<RpcRunner, DetectObjectResponse> detectObject(
             final String appname, final String apipath, final String imageAsBase64);
 }
