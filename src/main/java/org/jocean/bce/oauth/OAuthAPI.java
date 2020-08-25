@@ -1,10 +1,17 @@
 package org.jocean.bce.oauth;
 
-import org.jocean.http.RpcRunner;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
+import org.jocean.rpc.annotation.ConstParams;
+import org.jocean.rpc.annotation.RpcBuilder;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-import rx.Observable.Transformer;
+import rx.Observable;
 
 // http://ai.baidu.com/docs#/Auth : 鉴权认证机制
 
@@ -48,5 +55,23 @@ public interface OAuthAPI {
         public void setSessionSecret(final String sessionSecret);
     }
 
-    public Transformer<RpcRunner, AccessTokenResponse> getAccessToken();
+    @RpcBuilder
+    interface GetAccessTokenBuilder {
+
+        @QueryParam("client_id")
+        GetAccessTokenBuilder clientId(final String client_id);
+
+        @QueryParam("client_secret")
+        GetAccessTokenBuilder clientSecret(final String client_secret);
+
+        @GET
+        @ConstParams({"grant_type", "client_credentials"})
+        @Path("https://aip.baidubce.com/oauth/2.0/token")
+        @Consumes(MediaType.APPLICATION_JSON)
+        Observable<AccessTokenResponse> call();
+    }
+
+    GetAccessTokenBuilder getAccessToken();
+//
+//    public Transformer<RpcRunner, AccessTokenResponse> getAccessToken();
 }

@@ -3,14 +3,11 @@ package org.jocean.bce.ai.internal;
 import javax.inject.Inject;
 
 import org.jocean.bce.ai.AICustomAPI;
-import org.jocean.bce.oauth.OAuthAPI;
-import org.jocean.http.ContentUtil;
 import org.jocean.http.RpcRunner;
 import org.jocean.idiom.BeanFinder;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-import io.netty.handler.codec.http.HttpMethod;
 import rx.Observable.Transformer;
 
 public class DefaultAICustomAPI implements AICustomAPI {
@@ -40,6 +37,7 @@ public class DefaultAICustomAPI implements AICustomAPI {
 
         data.setImage(imageAsBase64);
 
+        /*
         return runners -> _finder.find(appname, OAuthAPI.class).flatMap(oauth -> runners.compose(oauth.getAccessToken()))
                 .flatMap(oauthresp -> runners.flatMap(runner -> runner.name("bce.ai.objectDetection")
                         .execute(interact -> interact
@@ -49,6 +47,9 @@ public class DefaultAICustomAPI implements AICustomAPI {
                                 .paramAsQuery("access_token", oauthresp.getAccessToken())
                                 .body(data, ContentUtil.TOJSON)
                                 .responseAs(ContentUtil.ASJSON, DetectObjectResponse.class))));
+                                */
+        // TBD
+        return null;
     }
 
     @Inject

@@ -1,14 +1,8 @@
 package org.jocean.bce.oauth.internal;
 
-import org.jocean.bce.oauth.OAuthAPI;
-import org.jocean.http.ContentUtil;
-import org.jocean.http.RpcRunner;
 import org.springframework.beans.factory.annotation.Value;
 
-import io.netty.handler.codec.http.HttpMethod;
-import rx.Observable.Transformer;
-
-public class DefaultOAuthAPI implements OAuthAPI {
+public class DefaultOAuthAPI /* implements OAuthAPI */ {
 
     /*
     获取Access Token
@@ -21,18 +15,18 @@ public class DefaultOAuthAPI implements OAuthAPI {
     client_secret： 必须参数，应用的Secret Key；
     */
 
-    @Override
-    public Transformer<RpcRunner, AccessTokenResponse> getAccessToken() {
-        return runners -> runners.flatMap(runner -> runner.name("bce.oauth.getAccessToken").execute(
-                interact -> interact.method(HttpMethod.GET)
-                    .uri("https://aip.baidubce.com")
-                    .path("/oauth/2.0/token")
-                    .paramAsQuery("grant_type", "client_credentials")
-                    .paramAsQuery("client_id", _app_key)
-                    .paramAsQuery("client_secret", _secret_key)
-                    .responseAs(ContentUtil.ASJSON, AccessTokenResponse.class)
-        ));
-    }
+//    @Override
+//    public Transformer<RpcRunner, AccessTokenResponse> getAccessToken() {
+//        return runners -> runners.flatMap(runner -> runner.name("bce.oauth.getAccessToken").execute(
+//                interact -> interact.method(HttpMethod.GET)
+//                    .uri("https://aip.baidubce.com")
+//                    .path("/oauth/2.0/token")
+//                    .paramAsQuery("grant_type", "client_credentials")
+//                    .paramAsQuery("client_id", _app_key)
+//                    .paramAsQuery("client_secret", _secret_key)
+//                    .responseAs(ContentUtil.ASJSON, AccessTokenResponse.class)
+//        ));
+//    }
 
     @Value("${app_key}")
     String _app_key;
