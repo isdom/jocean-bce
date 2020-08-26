@@ -2,7 +2,7 @@ package org.jocean.bce.ai.internal;
 
 import javax.inject.Inject;
 
-import org.jocean.bce.ai.AICustomAPI;
+import org.jocean.bce.ai.AICustomAPI.DetectObjectResponse;
 import org.jocean.http.RpcRunner;
 import org.jocean.idiom.BeanFinder;
 
@@ -10,7 +10,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 
 import rx.Observable.Transformer;
 
-public class DefaultAICustomAPI implements AICustomAPI {
+public class DefaultAICustomAPI /* implements AICustomAPI */ {
 
     public class ImageData {
         @JSONField(name = "image")
@@ -30,7 +30,7 @@ public class DefaultAICustomAPI implements AICustomAPI {
     http://ai.baidu.com/docs#/EasyDL_VIS_API/17ff0cc2
     */
 
-    @Override
+//    @Override
     public Transformer<RpcRunner, DetectObjectResponse> detectObject(
             final String appname, final String apipath, final String imageAsBase64) {
         final ImageData data = new ImageData();

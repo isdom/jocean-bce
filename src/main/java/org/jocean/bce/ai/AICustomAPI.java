@@ -1,10 +1,16 @@
 package org.jocean.bce.ai;
 
-import org.jocean.http.RpcRunner;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.MediaType;
+
+import org.jocean.rpc.annotation.RpcBuilder;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-import rx.Observable.Transformer;
+import rx.Observable;
 
 // http://ai.baidu.com/docs#/Auth : 鉴权认证机制
 
@@ -70,6 +76,23 @@ public interface AICustomAPI {
         public void setResults(final DetectionResult[] results);
     }
 
-    public Transformer<RpcRunner, DetectObjectResponse> detectObject(
-            final String appname, final String apipath, final String imageAsBase64);
+    // http://ai.baidu.com/docs#/EasyDL_VIS_API/17ff0cc2
+    @RpcBuilder
+    interface DetectObjectBuilder {
+
+        @JSONField(name = "image")
+        DetectObjectBuilder setImage(final String imageAsBase64);
+
+        @PathParam("apipath")
+        DetectObjectBuilder apipath(final String path);
+
+        @POST
+        @Path("https://aip.baidubce.com/rpc/2.0/ai_custom/v1/detection/{apipath}")
+        @Consumes(MediaType.APPLICATION_JSON)
+        Observable<DetectObjectResponse> call();
+    }
+
+    public DetectObjectBuilder detectObject();
+//    public Transformer<RpcRunner, DetectObjectResponse> detectObject(
+//            final String appname, final String apipath, final String imageAsBase64);
 }
