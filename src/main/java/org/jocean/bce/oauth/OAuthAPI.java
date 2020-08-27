@@ -72,6 +72,4 @@ public interface OAuthAPI {
     }
 
     GetAccessTokenBuilder getAccessToken();
-//
-//    public Transformer<RpcRunner, AccessTokenResponse> getAccessToken();
 }

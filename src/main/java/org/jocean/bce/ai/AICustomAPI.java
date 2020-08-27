@@ -93,6 +93,4 @@ public interface AICustomAPI {
     }
 
     public DetectObjectBuilder detectObject();
-//    public Transformer<RpcRunner, DetectObjectResponse> detectObject(
-//            final String appname, final String apipath, final String imageAsBase64);
 }
